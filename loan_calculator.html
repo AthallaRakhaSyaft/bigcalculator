@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Calculator</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="logo.jpeg" type="image/jpeg">
+
+    <!-- Bootstrap CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEJv3v4c6zB0Z7h2HbBXiG0dtOEOj7tOOkNOY0PQdV9uFAJ5GOl5+zH9iOFx1" crossorigin="anonymous">
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome (CDN) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <style>
+        .calculator-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+            margin: auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        label,
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            width: 100%;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        .error {
+            color: red;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        .icon-input {
+            display: flex;
+            align-items: center;
+        }
+
+        .icon-input input {
+            flex: 1;
+        }
+
+        .input-group-text {
+            background-color: #f1f1f1;
+        }
+
+        /* Logo Styling */
+        .logo {
+            max-width: 100px;
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+    <div class="container mt-5">
+        <!-- Logo at the top -->
+        <div class="text-center">
+            <img src="logo.jpeg" alt="Logo" class="logo img-fluid">
+        </div>
+
+        <h1 class="text-blue-600">Loan Calculator</h1>
+
+        <div class="calculator-container shadow-lg">
+            <!-- Loan Amount Input -->
+            <label for="loan-amount">Loan Amount ($):</label>
+            <div class="icon-input mb-3">
+                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                <input type="number" id="loan-amount" class="form-control" placeholder="Enter loan amount" required>
+            </div>
+
+            <!-- Interest Rate Input -->
+            <label for="interest-rate">Annual Interest Rate (%):</label>
+            <div class="icon-input mb-3">
+                <span class="input-group-text"><i class="fas fa-percent"></i></span>
+                <input type="number" id="interest-rate" class="form-control" placeholder="Enter annual interest rate" required>
+            </div>
+
+            <!-- Loan Term Input -->
+            <label for="loan-term">Loan Term (years):</label>
+            <div class="icon-input mb-3">
+                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                <input type="number" id="loan-term" class="form-control" placeholder="Enter loan term in years" required>
+            </div>
+
+            <!-- Calculate Button -->
+            <button onclick="calculateLoan()"><i class="fas fa-calculator"></i> Calculate Monthly Payment</button>
+
+            <!-- Result Section -->
+            <div class="result mt-3" id="result"></div>
+            <div class="error mt-2" id="error"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <!-- Bootstrap JS (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pzjw8f+ua7Kw1TIq0t7w7xV4EXl5qZYd8n0O6BZ6B2V7rC6eE4e6hBBOPrOBqbm9" crossorigin="anonymous"></script>
+</body>
+
+</html>

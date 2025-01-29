@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuel Cost Calculator</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="logo.jpeg" type="image/jpeg">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Font Awesome (CDN) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+    <!-- Logo at the top -->
+    <div class="text-center mt-5">
+        <img src="logo.jpeg" alt="Logo" class="logo img-fluid" style="max-width: 100px; margin-bottom: 20px;">
+    </div>
+
+    <h1 class="text-center text-blue-600">Fuel Cost Calculator</h1>
+
+    <div class="calculator-container shadow-lg">
+        <!-- Distance Input -->
+        <label for="distance">Distance (in km):</label>
+        <div class="icon-input mb-3">
+            <span class="input-group-text"><i class="fas fa-road"></i></span>
+            <input type="number" id="distance" class="form-control" placeholder="Enter distance in kilometers" required>
+        </div>
+
+        <!-- Fuel Consumption Input -->
+        <label for="fuel-consumption">Fuel Consumption (L/100 km):</label>
+        <div class="icon-input mb-3">
+            <span class="input-group-text"><i class="fas fa-tachometer-alt"></i></span>
+            <input type="number" id="fuel-consumption" class="form-control" placeholder="Enter fuel consumption in L/100 km" required>
+        </div>
+
+        <!-- Fuel Price Input -->
+        <label for="fuel-price">Fuel Price (per liter):</label>
+        <div class="icon-input mb-3">
+            <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+            <input type="number" id="fuel-price" class="form-control" placeholder="Enter fuel price per liter" required>
+        </div>
+
+        <!-- Calculate Button -->
+        <button onclick="calculateFuelCost()"><i class="fas fa-calculator"></i> Calculate Fuel Cost</button>
+
+        <!-- Result Section -->
+        <div class="result mt-3" id="result"></div>
+        <div class="error mt-2" id="error"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

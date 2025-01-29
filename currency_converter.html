@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="logo.jpeg" type="image/jpeg">
+
+    <!-- Bootstrap CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJv3v4c6zB0Z7h2HbBXiG0dtOEOj7tOOkNOY0PQdV9uFAJ5GOl5+zH9iOFx1" crossorigin="anonymous">
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome (CDN) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* Custom styles */
+        .converter-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+            margin: auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        input,
+        select {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            width: 100%;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        .error {
+            color: red;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        body {
+            background-image: url('backgroundkalkulator.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Overlay to darken the background image for better text visibility */
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4); /* semi-transparent dark overlay */
+            z-index: -1; /* Keeps the overlay behind the content */
+        }
+
+        /* Logo styling */
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <div class="background-overlay"></div>
+
+    <div class="container mt-5">
+        <!-- Logo added here -->
+        <img src="logo.jpeg" alt="Logo" class="logo">
+
+        <h1 class="text-blue-600">Currency Converter</h1>
+
+        <div class="converter-container shadow-lg">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
+                <input type="number" id="amount" class="form-control" placeholder="Enter amount" required>
+            </div>
+
+            <div class="d-flex justify-between mb-3">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-arrow-down"></i></span>
+                    <select id="from-currency" class="form-select">
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                        <option value="INR">INR</option>
+                        <option value="IDR">IDR</option>
+                    </select>
+                </div>
+
+                <span class="align-self-center text-center">to</span>
+
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-arrow-up"></i></span>
+                    <select id="to-currency" class="form-select">
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                        <option value="INR">INR</option>
+                        <option value="IDR">IDR</option>
+                    </select>
+                </div>
+            </div>
+
+            <button onclick="convertCurrency()">
+                <i class="fas fa-sync-alt"></i> Convert
+            </button>
+
+            <div class="result mt-3" id="result"></div>
+            <div class="error mt-2" id="error"></div>
+        </div>
+    </div>
+
+    <script>
+        function convertCurrency() {
+            const amount = document.getElementById('amount').value;
+            const fromCurrency = document.getElementById('from-currency').value;
+            const toCurrency = document.getElementById('to-currency').value;
+            const resultElement = document.getElementById('result');
+            const errorElement = document.getElementById('error');
+
+            if (!amount || isNaN(amount)) {
+                errorElement.textContent = 'Please enter a valid amount.';
+                resultElement.textContent = '';
+                return;
+            }
+
+            // Clear any previous error
+            errorElement.textContent = '';
+
+            // Simulate the conversion (you would normally use an API for real conversion rates)
+            const conversionRates = {
+                'USD': { 'EUR': 0.85, 'GBP': 0.75, 'INR': 75, 'IDR': 14150 },
+                'EUR': { 'USD': 1.18, 'GBP': 0.88, 'INR': 88, 'IDR': 16600 },
+                'GBP': { 'USD': 1.33, 'EUR': 1.14, 'INR': 100, 'IDR': 19000 },
+                'INR': { 'USD': 0.013, 'EUR': 0.011, 'GBP': 0.0099, 'IDR': 190 },
+                'IDR': { 'USD': 0.000070, 'EUR': 0.000060, 'GBP': 0.000052, 'INR': 0.0053 },
+            };
+
+            // Check if the currencies are available for conversion
+            if (fromCurrency === toCurrency) {
+                resultElement.textContent = 'The currencies are the same!';
+                return;
+            }
+
+            const rate = conversionRates[fromCurrency][toCurrency];
+            const result = amount * rate;
+            resultElement.textContent = `Result: ${result.toFixed(2)} ${toCurrency}`;
+        }
+    </script>
+
+    <!-- Bootstrap JS (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0t7w7xV4EXl5qZYd8n0O6BZ6B2V7rC6eE4e6hBBOPrOBqbm9" crossorigin="anonymous"></script>
+</body>
+
+</html>
